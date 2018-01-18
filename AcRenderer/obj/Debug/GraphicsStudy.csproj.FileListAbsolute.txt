@@ -1,0 +1,13 @@
+E:\Programing\C#\图形学\GraphicsStudy\GraphicsStudy\obj\Debug\GraphicsStudy.csproj.GenerateResource.Cache
+E:\Programing\C#\图形学\GraphicsStudy\GraphicsStudy\obj\Debug\GraphicsStudy.csproj.CoreCompileInputs.cache
+E:\Programing\C#\图形学\GraphicsStudy\GraphicsStudy\obj\Debug\GraphicsStudy.csprojResolveAssemblyReference.cache
+E:\Programing\C#\图形学\GraphicsStudy\GraphicsStudy\bin\Debug\ACEngine.exe.config
+E:\Programing\C#\图形学\GraphicsStudy\GraphicsStudy\bin\Debug\ACEngine.exe
+E:\Programing\C#\图形学\GraphicsStudy\GraphicsStudy\bin\Debug\ACEngine.pdb
+E:\Programing\C#\图形学\GraphicsStudy\GraphicsStudy\bin\Debug\byn\ACEngine.resources.dll
+E:\Programing\C#\图形学\GraphicsStudy\GraphicsStudy\obj\Debug\ACEngine.Form1.resources
+E:\Programing\C#\图形学\GraphicsStudy\GraphicsStudy\obj\Debug\ACEngine.Properties.Resources.resources
+E:\Programing\C#\图形学\GraphicsStudy\GraphicsStudy\obj\Debug\ACEngine.Form1.byn.resources
+E:\Programing\C#\图形学\GraphicsStudy\GraphicsStudy\obj\Debug\byn\ACEngine.resources.dll
+E:\Programing\C#\图形学\GraphicsStudy\GraphicsStudy\obj\Debug\ACEngine.exe
+E:\Programing\C#\图形学\GraphicsStudy\GraphicsStudy\obj\Debug\ACEngine.pdb
