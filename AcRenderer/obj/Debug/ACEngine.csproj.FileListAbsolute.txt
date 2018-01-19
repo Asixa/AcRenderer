@@ -18,3 +18,13 @@ E:\Programing\C#\图形学\GraphicsStudy WithNothing\GraphicsStudy\obj\Debug\ACE
 E:\Programing\C#\图形学\GraphicsStudy WithNothing\GraphicsStudy\obj\Debug\ACEngine.csproj.CoreCompileInputs.cache
 E:\Programing\C#\图形学\GraphicsStudy WithNothing\GraphicsStudy\obj\Debug\ACEngine.exe
 E:\Programing\C#\图形学\GraphicsStudy WithNothing\GraphicsStudy\obj\Debug\ACEngine.pdb
+E:\Programing\C#\图形学\AcRenderer\AcRenderer\bin\Debug\ACEngine.exe.config
+E:\Programing\C#\图形学\AcRenderer\AcRenderer\bin\Debug\ACEngine.exe
+E:\Programing\C#\图形学\AcRenderer\AcRenderer\bin\Debug\ACEngine.pdb
+E:\Programing\C#\图形学\AcRenderer\AcRenderer\obj\Debug\ACEngine.csprojResolveAssemblyReference.cache
+E:\Programing\C#\图形学\AcRenderer\AcRenderer\obj\Debug\ACEngine.Form1.resources
+E:\Programing\C#\图形学\AcRenderer\AcRenderer\obj\Debug\ACEngine.Properties.Resources.resources
+E:\Programing\C#\图形学\AcRenderer\AcRenderer\obj\Debug\ACEngine.csproj.GenerateResource.Cache
+E:\Programing\C#\图形学\AcRenderer\AcRenderer\obj\Debug\ACEngine.csproj.CoreCompileInputs.cache
+E:\Programing\C#\图形学\AcRenderer\AcRenderer\obj\Debug\ACEngine.exe
+E:\Programing\C#\图形学\AcRenderer\AcRenderer\obj\Debug\ACEngine.pdb
