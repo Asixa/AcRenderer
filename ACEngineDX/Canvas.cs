@@ -19,7 +19,8 @@ namespace ACEngine
             NoShading
         }
 
-        public DrawMode draw_mode = DrawMode.GouraudShading;
+        public bool FlipNormal = false;
+        public DrawMode draw_mode = DrawMode.Wireframe;
         private static int Width => 512;
         private static int Height => 512;
         private Color currentColor;
@@ -33,6 +34,9 @@ namespace ACEngine
             {
                 if (t.meshRenderer == null) continue;
                 var renderer = t.meshRenderer;
+                renderer.CaculateCameraTransform();
+       
+                if(renderer.transform.positionToCamera.z<=0)continue;
                 var c = 1;
                 for (var i = 0; i + 2 < renderer.mesh.vertices.Length; i += 3)
                 {
@@ -53,13 +57,14 @@ namespace ACEngine
             var v1 = p2 - p1;
             var v2 = p3 - p2;
             var normal = Vector3.Cross(v1, v2);
-            var view_dir = p1 - camera_position;
-            return Vector3.Dot(normal, view_dir) > 0;
+            var view_dir = p1 - camera_position; 
+            return FlipNormal? Vector3.Dot(normal, view_dir) <= 0: Vector3.Dot(normal, view_dir) > 0;
         }
 
         public Vector2 ToScreen(Vector3 pos) => new Vector2((int)(pos.x * (1 / pos.z) * Width + Width/2), (int)(pos.y * (1 / pos.z) * Height + Height/2));
         public Vertex ToScreen(Vertex p)
         {
+
             var result = ToScreen(p.point);
             return new Vertex(p){point=new Vector3(result.x, result.y,0)};
         }
@@ -88,7 +93,7 @@ namespace ACEngine
 
         public void Triangle(Vertex p0, Vertex p1, Vertex p2)
         {
-            if (draw_mode == DrawMode.Wireframe || draw_mode == DrawMode.WireframeWithoutCulling || draw_mode == DrawMode.Tex_Wire)
+            if (draw_mode == DrawMode.Wireframe || draw_mode == DrawMode.WireframeWithoutCulling || draw_mode == DrawMode.Tex_Wire||draw_mode == DrawMode.GouraudShading)
             {
                 Program.main.DrawLine(p0, p1);
                 Program.main.DrawLine(p1, p2);

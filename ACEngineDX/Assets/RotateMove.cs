@@ -11,10 +11,7 @@ namespace ACEngine.Assets
         public int MoveDir = 1;
         public override void Update()
         {
-            if (Input.GetKeyDown(Key.C))
-            {
-                Console.WriteLine(233);
-            }
+
             transform.rotation.y += 1.6f;
             transform.rotation.x += 1.6f;
             transform.rotation.z += 1.6f;

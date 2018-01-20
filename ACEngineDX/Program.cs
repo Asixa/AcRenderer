@@ -7,6 +7,7 @@ using ACEngine;
 using ACEngine.Engine;
 using ACEngine.Engine.Rendering;
 using ACEngine.Engine.Scene;
+using ACEngine.Math;
 using ACEngineDX.Assets;
 using SharpDX;
 using SharpDX.Direct2D1;
@@ -50,7 +51,14 @@ namespace ACEngineDX
             Input.Check();
             SceneManager.Current.OnUpdate();
             CheckForChangeMode();
-          
+            if (Input.GetKeyDown(Key.F5))
+            {
+                SceneManager.Current.ObjectInScene.Remove(SceneManager.Current.ObjectInScene[1]);
+            }
+            if (Input.GetKeyDown(Key.LeftAlt))
+            {
+                canvas.FlipNormal = !canvas.FlipNormal;
+            }
         }
 
         public void Start()
@@ -108,7 +116,14 @@ namespace ACEngineDX
         private void DragDrop(object sender, DragEventArgs e)
         {
             string path = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
-            Behavior.Spawn(GameObject.Create(new ACEngine.Engine.Rendering.Mesh(ObjModelLoader.ObjLoader.load(path))), new ACEngine.Math.Vector3(0, 0, 2), new ACEngine.Math.Vector3(0, 0, 0)).AddComponent(new MouseMove());
+            try
+            {
+                Behavior.Spawn(GameObject.Create(new ACEngine.Engine.Rendering.Mesh(ObjModelLoader.ObjLoader.load(path))), new ACEngine.Math.Vector3(0, 0, 2), new ACEngine.Math.Vector3(0, 0, 0)).AddComponent(new MouseMove());
+            }
+            catch (Exception exception)
+            {
+                // ignored
+            }
         }
         #endregion
 

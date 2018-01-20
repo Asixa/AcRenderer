@@ -1,7 +1,7 @@
 ﻿using ACEngine.Engine.Rendering;
 using ACEngine.Engine.Scene;
 using ACEngine.Math;
-
+//OLDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
 namespace ACEngine.Engine
 {
     public class MeshRenderer :Component
@@ -20,7 +20,7 @@ namespace ACEngine.Engine
                             position = transform.position,
                             rotation = transform.rotation + SceneManager.Current.main_camera.transform.rotation
                         })
-            };
+            };//OLDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD//OLDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
 
         public static Vector3 GetRelativePosition(Vector3 t, Transform zero)
         {

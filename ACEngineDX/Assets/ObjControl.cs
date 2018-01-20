@@ -8,12 +8,17 @@ namespace ACEngineDX.Assets
     {
         public override void Update()
         {
-            if (Input.GetKey(Key.Q)) transform.rotation.z++;
-            if (Input.GetKey(Key.E)) transform.rotation.z--;
-            if (Input.GetKey(Key.W)) transform.position.z+=0.05f;
-            if (Input.GetKey(Key.S)) transform.position.z -= 0.05f;
-            if (Input.GetKey(Key.A)) transform.position.x -= 0.05f;
-            if (Input.GetKey(Key.D)) transform.position.x += 0.05f;
+            float move = 0.01f;
+
+            if (Input.GetKey(Key.W)) transform.position-=transform.rotation*move;
+            if (Input.GetKey(Key.S)) transform.position+= transform.rotation * move;
+
+
+            if (Input.GetMouse(0))
+            {
+                transform.rotation.x += Input.MouseAsix.y * 1f;
+                transform.rotation.y -= Input.MouseAsix.x * 1f;
+            }
         }
     }
 }

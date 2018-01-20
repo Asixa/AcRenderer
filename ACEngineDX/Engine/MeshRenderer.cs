@@ -1,4 +1,5 @@
-﻿using ACEngine.Engine.Rendering;
+﻿using System;
+using ACEngine.Engine.Rendering;
 using ACEngine.Engine.Scene;
 using ACEngine.Math;
 
@@ -11,30 +12,23 @@ namespace ACEngine.Engine
         public Mesh mesh;
         public Material material;
 
-        public Vertex GetCameraPosition(int i)
-        {
-            var camera = new Transform
+        public Vertex GetCameraPosition(int i)=>new Vertex(mesh.vertices[i])
             {
-                position = SceneManager.Current.main_camera.transform.position,
-                rotation = SceneManager.Current.main_camera.transform.rotation
-            };
-            return new Vertex(mesh.vertices[i])
-            {
-                point = GetRelativePosition(transform.position - camera.position, camera) -
-                        camera.position +
-                        GetRelativePosition(mesh.vertices[i].point, new Transform
-                        {
-                            position = transform.position,
-                            rotation = transform.rotation + camera.rotation
-                        })
+                point = GetRelativePositionToVertex(mesh.vertices[i].point,
+                    transform.positionToCamera,
+                    transform.RotationToCamera)
             };
 
-
-        } 
-
-        public static Vector3 GetRelativePosition(Vector3 t, Transform zero)
+        public void CaculateCameraTransform()
         {
-            var rot = zero.rotation/Mathx.Rad2Deg;
+            var camera = SceneManager.Current.main_camera.transform;
+            transform.RotationToCamera = transform.rotation +camera.rotation;
+            transform.positionToCamera = GetRelativePosition(transform.position-camera.position, camera.position,camera.rotation,true);
+        }
+
+        public static Vector3 GetRelativePositionToVertex(Vector3 t, Vector3 zP,Vector3 zR,bool debug=false)
+        {
+            var rot = zR/Mathx.Rad2Deg;
             float x = t.x, y = t.y, z = t.z;
             float y0 = y, x0 = x, z0 = z;
             //y
@@ -53,8 +47,33 @@ namespace ACEngine.Engine
             a = rot.z;
             x0 = x * Mathx.cos(a) - y * Mathx.sin(a);
             y0 = x * Mathx.sin(a) + y * Mathx.cos(a);
+            if(debug)Console.WriteLine("相对" + t+" 结果"+(new Vector3(x0, y0, z0) + zP));
+            return new Vector3(x0, y0,z0)+zP;
+        }
 
-            return new Vector3(x0, y0,z0);
+        public static Vector3 GetRelativePosition(Vector3 t, Vector3 zP, Vector3 zR, bool debug = false)
+        {
+            var rot = zR / Mathx.Rad2Deg;
+          
+            float x = t.x, y = t.y, z = t.z;
+            float y0 = y, x0 = x, z0 = z;
+            //y
+            var a = rot.y;
+            z0 = z * Mathx.cos(a) - x * Mathx.sin(a);
+            x0 = z * Mathx.sin(a) + x * Mathx.cos(a);
+            y = y0;
+            z = z0;
+            //x
+            a = rot.x;
+            y0 = y * Mathx.cos(a) - z * Mathx.sin(a);
+            z0 = y * Mathx.sin(a) + z * Mathx.cos(a);
+            x = x0;
+            y = y0;
+            //z
+            a = rot.z;
+            x0 = x * Mathx.cos(a) - y * Mathx.sin(a);
+            y0 = x * Mathx.sin(a) + y * Mathx.cos(a);
+            return new Vector3(x0, y0, z0);
         }
     }
 
