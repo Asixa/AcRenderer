@@ -8,7 +8,7 @@ namespace ACEngineDX.Base
         private readonly DxTime clock = new DxTime();
         private FormWindowState _currentFormWindowState;
         private bool _disposed;
-        private Form _form;
+        public Form form;
         private float _frameAccumulator;
         private int _frameCount;
 
@@ -43,13 +43,13 @@ namespace ACEngineDX.Base
         protected virtual void Dispose(bool disposeManagedResources)
         {
             if (!disposeManagedResources) return;
-            _form?.Dispose();
+            form?.Dispose();
         }
 
         /// <summary>
         /// Return the Handle to display to.
         /// </summary>
-        protected IntPtr DisplayHandle => _form.Handle;
+        protected IntPtr DisplayHandle => form.Handle;
 
         /// <summary>
         /// Gets the config.
@@ -76,7 +76,12 @@ namespace ACEngineDX.Base
         {
             return new RenderForm(config.Title)
             {
-                ClientSize = new System.Drawing.Size(config.Width, config.Height)
+                ClientSize = new System.Drawing.Size(config.Width, config.Height),
+                Icon = null,
+                FormBorderStyle = FormBorderStyle.FixedSingle,
+                ShowIcon = false,
+                MaximizeBox = false
+                
             };
         }
 
@@ -94,41 +99,41 @@ namespace ACEngineDX.Base
         public void Run(DxConfiguration dx_configuration)
         {
             this.Config = dx_configuration ?? new DxConfiguration();
-            _form = CreateForm(this.Config);
+            form = CreateForm(this.Config);
             Initialize(Config);
 
             var isFormClosed = false;
             var formIsResizing = false;
 
-            _form.MouseClick += HandleMouseClick;
-            _form.KeyDown += HandleKeyDown;
-            _form.KeyUp += HandleKeyUp;
-            _form.Resize += (o, args) =>
+            form.MouseClick += HandleMouseClick;
+            form.KeyDown += HandleKeyDown;
+            form.KeyUp += HandleKeyUp;
+            form.Resize += (o, args) =>
             {
-                if (_form.WindowState != _currentFormWindowState)
+                if (form.WindowState != _currentFormWindowState)
                 {
                     HandleResize(o, args);
                 }
 
-                _currentFormWindowState = _form.WindowState;
+                _currentFormWindowState = form.WindowState;
             };
 
-            _form.ResizeBegin += (o, args) => formIsResizing = true;
+            form.ResizeBegin += (o, args) => formIsResizing = true;
 
 
-            _form.ResizeEnd += (o, args) =>
+            form.ResizeEnd += (o, args) =>
             {
                 formIsResizing = false;
                 HandleResize(o, args);
             };
 
-            _form.Closed += (o, args) => isFormClosed = true;
+            form.Closed += (o, args) => isFormClosed = true;
 
             LoadContent();
 
             clock.Start();
             BeginRun();
-            RenderLoop.Run(_form, () =>
+            RenderLoop.Run(form, () =>
             {
                 if (isFormClosed)
                 {
@@ -203,7 +208,7 @@ namespace ACEngineDX.Base
         /// </summary>
         public void Exit()
         {
-            _form.Close();
+            form.Close();
         }
 
         /// <summary>
@@ -215,7 +220,7 @@ namespace ACEngineDX.Base
             Update(clock);
         }
 
-        protected System.Drawing.Size RenderingSize => _form.ClientSize;
+        protected System.Drawing.Size RenderingSize => form.ClientSize;
 
         /// <summary>
         ///   Renders the sample.
@@ -228,7 +233,7 @@ namespace ACEngineDX.Base
             {
                 FramePerSecond = _frameCount / _frameAccumulator;
 
-                _form.Text = Config.Title + " - 帧数FPS: " + FramePerSecond;
+                form.Text = Config.Title + " - 帧数FPS: " + FramePerSecond;
                 _frameAccumulator = 0.0f;
                 _frameCount = 0;
             }
@@ -284,15 +289,15 @@ namespace ACEngineDX.Base
 
         private void HandleResize(object sender, EventArgs e)
         {
-            if (_form.WindowState == FormWindowState.Minimized)
+            if (form.WindowState == FormWindowState.Minimized)
             {
                 return;
             }
 
             // UnloadContent();
 
-            //_configuration.WindowWidth = _form.ClientSize.Width;
-            //_configuration.WindowHeight = _form.ClientSize.Height;
+            //_configuration.WindowWidth = form.ClientSize.Width;
+            //_configuration.WindowHeight = form.ClientSize.Height;
 
             //if( Context9 != null ) {
             //    userInterfaceRenderer.Dispose();
@@ -302,14 +307,14 @@ namespace ACEngineDX.Base
 
             //    Context9.Device.Reset( Context9.PresentParameters );
 
-            //    userInterfaceRenderer = new UserInterfaceRenderer9( Context9.Device, _form.ClientSize.Width, _form.ClientSize.Height );
+            //    userInterfaceRenderer = new UserInterfaceRenderer9( Context9.Device, form.ClientSize.Width, form.ClientSize.Height );
             //} else if( Context10 != null ) {
             //    userInterfaceRenderer.Dispose();
 
             //    Context10.SwapChain.ResizeBuffers( 1, WindowWidth, WindowHeight, Context10.SwapChain.Description.ModeDescription.Format, Context10.SwapChain.Description.Flags );
 
 
-            //    userInterfaceRenderer = new UserInterfaceRenderer10( Context10.Device, _form.ClientSize.Width, _form.ClientSize.Height );
+            //    userInterfaceRenderer = new UserInterfaceRenderer10( Context10.Device, form.ClientSize.Width, form.ClientSize.Height );
             //}
 
             // LoadContent();

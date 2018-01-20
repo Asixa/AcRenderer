@@ -19,3 +19,8 @@ E:\Programing\C#\图形学\AcRenderer\ACEngineDX\obj\Debug\ACEngineDX.csproj.Gen
 E:\Programing\C#\图形学\AcRenderer\ACEngineDX\obj\Debug\ACEngineDX.csproj.CoreCompileInputs.cache
 E:\Programing\C#\图形学\AcRenderer\ACEngineDX\obj\Debug\ACEngineDX.exe
 E:\Programing\C#\图形学\AcRenderer\ACEngineDX\obj\Debug\ACEngineDX.pdb
+E:\Programing\C#\图形学\AcRenderer\ACEngineDX\bin\Debug\SharpDX.DirectInput.dll
+E:\Programing\C#\图形学\AcRenderer\ACEngineDX\bin\Debug\SharpDX.DirectInput.xml
+E:\Programing\C#\图形学\AcRenderer\ACEngineDX\bin\Debug\AcObjLoader.dll
+E:\Programing\C#\图形学\AcRenderer\ACEngineDX\bin\Debug\AcObjLoader.pdb
+E:\Programing\C#\图形学\AcRenderer\ACEngineDX\bin\Debug\AcObjLoader.dll.config

@@ -6,7 +6,7 @@ namespace ACEngineDX.Base
         /// <summary>
         /// Initializes a new instance of the <see cref="DxConfiguration"/> class.
         /// </summary>
-        public DxConfiguration() : this("SharpDX Demo")
+        public DxConfiguration() : this("DxWindow")
         {
         }
 

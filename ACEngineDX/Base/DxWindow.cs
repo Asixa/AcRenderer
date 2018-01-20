@@ -1,9 +1,10 @@
 ﻿using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
 using SharpDX.DXGI;
+
 namespace ACEngineDX.Base
 {
-    public class D3DWindow : DxApplication
+    public class DxWindow : DxApplication
     {
 
         SharpDX.Direct3D11.Device _device;
@@ -46,7 +47,7 @@ namespace ACEngineDX.Base
             SharpDX.Direct3D11.Device.CreateWithSwapChain(DriverType.Hardware, DeviceCreationFlags.BgraSupport, new[] { FeatureLevel.Level_10_0 }, desc, out _device, out _swapChain);
 
             // Ignore all windows events
-            Factory factory = _swapChain.GetParent<Factory>();
+            var factory = _swapChain.GetParent<Factory>();
             factory.MakeWindowAssociation(DisplayHandle, WindowAssociationFlags.IgnoreAll);
 
             // New RenderTargetView from the backbuffer

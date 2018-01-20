@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>WindowsPlayer.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="SharpDX, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpDX.4.0.1\lib\net45\SharpDX.dll</HintPath>
@@ -43,6 +46,9 @@
     </Reference>
     <Reference Include="SharpDX.Direct3D11, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpDX.Direct3D11.4.0.1\lib\net45\SharpDX.Direct3D11.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DirectInput, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.DirectInput.4.0.1\lib\net45\SharpDX.DirectInput.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.DXGI, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpDX.DXGI.4.0.1\lib\net45\SharpDX.DXGI.dll</HintPath>
@@ -63,17 +69,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CameraMove.cs" />
+    <Compile Include="Assets\DebugRotation.cs" />
+    <Compile Include="Assets\MouseMove.cs" />
+    <Compile Include="Assets\ObjControl.cs" />
+    <Compile Include="Assets\Rotate.cs" />
+    <Compile Include="Assets\RotateMove.cs" />
     <Compile Include="Base\D2DWindow.cs" />
-    <Compile Include="Base\D3DWindow.cs" />
+    <Compile Include="Base\DxWindow.cs" />
     <Compile Include="Base\DxApplication.cs" />
     <Compile Include="Base\DxConfiguration.cs" />
     <Compile Include="Base\DxTime.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Canvas.cs" />
+    <Compile Include="Engine\Base.cs" />
+    <Compile Include="Engine\Behavior.cs" />
+    <Compile Include="Engine\Component.cs" />
+    <Compile Include="Engine\GameObject.cs" />
+    <Compile Include="Engine\Input.cs" />
+    <Compile Include="Engine\MeshRenderer.cs" />
+    <Compile Include="Engine\Rendering\Camera.cs" />
+    <Compile Include="Engine\Rendering\Color32.cs" />
+    <Compile Include="Engine\Rendering\Material.cs" />
+    <Compile Include="Engine\Rendering\Mesh.cs" />
+    <Compile Include="Engine\Rendering\Model.cs" />
+    <Compile Include="Engine\Rendering\Vertex.cs" />
+    <Compile Include="Engine\Scene\Scene.cs" />
+    <Compile Include="Engine\Scene\SceneManager.cs" />
+    <Compile Include="Engine\Time.cs" />
+    <Compile Include="Engine\Transform.cs" />
+    <Compile Include="Math\Mathx.cs" />
+    <Compile Include="Math\Matrix4x4.cs" />
+    <Compile Include="Math\Random.cs" />
+    <Compile Include="Math\SpheCoord.cs" />
+    <Compile Include="Math\Vector2.cs" />
+    <Compile Include="Math\Vector3.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -98,6 +127,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="WindowsPlayer.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ObjModelLoader\AcObjLoader.csproj">
+      <Project>{e2e3fa96-6fd7-457b-9461-2b5ae0555a23}</Project>
+      <Name>AcObjLoader</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

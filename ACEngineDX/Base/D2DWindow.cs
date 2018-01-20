@@ -5,7 +5,7 @@ using AlphaMode = SharpDX.Direct2D1.AlphaMode;
 using Factory = SharpDX.Direct2D1.Factory;
 namespace ACEngineDX.Base
 {
-    public class D2DWindow : D3DWindow
+    public class D2DWindow : DxWindow
     {
         public Factory Factory2D { get; private set; }
         public SharpDX.DirectWrite.Factory FactoryDWrite { get; private set; }
