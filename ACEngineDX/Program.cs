@@ -7,7 +7,6 @@ using ACEngine;
 using ACEngine.Engine;
 using ACEngine.Engine.Rendering;
 using ACEngine.Engine.Scene;
-using ACEngine.Math;
 using ACEngineDX.Assets;
 using SharpDX;
 using SharpDX.Direct2D1;
@@ -19,7 +18,7 @@ using Bitmap = SharpDX.Direct2D1.Bitmap;
 using Color = System.Drawing.Color;
 using PixelFormat = SharpDX.Direct2D1.PixelFormat;
 using Random = ACEngineDX.Math.Random;
-
+using Vector3= ACEngine.Math.Vector3;
 namespace ACEngineDX
 {
     public class Program:D2DWindow
@@ -45,7 +44,6 @@ namespace ACEngineDX
         public Canvas canvas;
 
 
-
         public void Update()
         {
             Input.Check();
@@ -53,9 +51,13 @@ namespace ACEngineDX
             CheckForChangeMode();
             if (Input.GetKeyDown(Key.F5))
             {
-                SceneManager.Current.ObjectInScene.Remove(SceneManager.Current.ObjectInScene[1]);
+                if (SceneManager.Current.ObjectInScene.Count>1)
+                {
+                    SceneManager.Current.ObjectInScene.Remove(SceneManager.Current.ObjectInScene[1]);
+                }
+           
             }
-            if (Input.GetKeyDown(Key.LeftAlt))
+            if (Input.GetKeyDown(Key.LeftAlt)) 
             {
                 canvas.FlipNormal = !canvas.FlipNormal;
             }
@@ -88,22 +90,28 @@ namespace ACEngineDX
             _memory[i + 3] = color.A;
         }
 
+
         public void DrawLine(int xs, int xe, int y, Color c)
         {
-            LineBrush.Color = new RawColor4(c.R, c.G, c.B, c.A);
-            RenderTarget2D.DrawLine(new RawVector2(xs, y), new RawVector2(xe, y), LineBrush);
+            LineBrush.Color = new RawColor4(c.R/255f, c.G / 255f, c.B / 255f, 1);
+            RenderTarget2D.DrawLine(new RawVector2(xs, y), new RawVector2(xe, y), LineBrush,2);
         }
 
         public void DrawLine(Vertex f, Vertex t)
         {
             LineBrush.Color = new RawColor4(0, 0, 0, 1);
             RenderTarget2D.DrawLine(new RawVector2(f.point.x, f.point.y), new RawVector2(t.point.x, t.point.y), LineBrush,3);
-        } //=> DrawLine(f, t, Color.Black);
+        } 
 
         public void DrawLine(Vertex f, Vertex t, Color c)
         {
             LineBrush.Color = new RawColor4(c.R, c.G, c.B, c.A);
-            RenderTarget2D.DrawLine(new RawVector2(f.point.x, f.point.y), new RawVector2(t.point.x, t.point.y), LineBrush);
+            RenderTarget2D.DrawLine(new RawVector2(f.point.x, f.point.y), new RawVector2(t.point.x, t.point.y), LineBrush,2);
+        }
+        public void DrawLine(Vector3 f, Vector3 t, Color c,int w=2)
+        {
+            LineBrush.Color = new RawColor4(c.R, c.G, c.B, c.A);
+            RenderTarget2D.DrawLine(new RawVector2(f.x, f.y), new RawVector2(t.x, t.y), LineBrush, w);
         }
         #endregion
 
@@ -136,14 +144,16 @@ namespace ACEngineDX
             Start();
         }
 
+
         protected override void Draw(DxTime time)
         {
             base.Draw(time);
             RenderTarget2D.Clear(backgroundColor);
             Array.Clear(_memory, 0, _memory.Length);
             Update();
-
+           
             canvas.Draw();
+      
 
             _backBufferBmp.CopyFromMemory(_memory, Width * 4);
             RenderTarget2D.DrawBitmap(_backBufferBmp, 1f, BitmapInterpolationMode.Linear);

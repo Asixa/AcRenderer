@@ -13,7 +13,7 @@ namespace ACEngine.Engine
         public Transform transform => gameObject.transform;
         public static GameObject CreateNew()
         {
-            return new GameObject{camera = new Camera(),meshRenderer = null};
+            return new GameObject{camera = new Camera(),renderer = null};
         }
     }
 }

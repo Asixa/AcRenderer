@@ -5,6 +5,7 @@ using ACEngine.Engine.Rendering;
 using ACEngine.Engine.Scene;
 using ACEngine.Math;
 using ACEngineDX;
+using ACEngineDX.Engine;
 
 namespace ACEngine
 {
@@ -23,7 +24,7 @@ namespace ACEngine
         public DrawMode draw_mode = DrawMode.Wireframe;
         private static int Width => 512;
         private static int Height => 512;
-        private Color currentColor;
+        public Color currentColor;
 
 
         public void SetPixel(int x, int y, Color color) => Program.main.SetPixel(x, y, color);
@@ -32,24 +33,10 @@ namespace ACEngine
         {
             foreach (var t in SceneManager.Current.ObjectInScene)
             {
-                if (t.meshRenderer == null) continue;
-                var renderer = t.meshRenderer;
-                renderer.CaculateCameraTransform();
-       
-                if(renderer.transform.positionToCamera.z<=0)continue;
-                var c = 1;
-                for (var i = 0; i + 2 < renderer.mesh.vertices.Length; i += 3)
-                {
-                    c++;
-                    if (c > 27) c = 2;
-                    currentColor = Color.FromArgb(100 + ((int) (c / 2)) * 10, 100 + ((int) (c / 2)) * 10,
-                        100 + ((int) (c / 2)) * 10);
-                    DrawTriangle(renderer, i);
-                }
+                t.renderer?.Render();
             }
         }
     
-
         private bool BackFaceCulling(Vector3 p1, Vector3 p2, Vector3 p3)
         {
             if (draw_mode == DrawMode.WireframeWithoutCulling)return true;
@@ -62,12 +49,7 @@ namespace ACEngine
         }
 
         public Vector2 ToScreen(Vector3 pos) => new Vector2((int)(pos.x * (1 / pos.z) * Width + Width/2), (int)(pos.y * (1 / pos.z) * Height + Height/2));
-        public Vertex ToScreen(Vertex p)
-        {
-
-            var result = ToScreen(p.point);
-            return new Vertex(p){point=new Vector3(result.x, result.y,0)};
-        }
+        public Vertex ToScreen(Vertex p)=>new Vertex(p){point=ToScreen(p.point).v3()};
 
         public void FillLine_Gouraud(Color32 lc, Color32 rc, int xs, int xe, int y,int debug)
 

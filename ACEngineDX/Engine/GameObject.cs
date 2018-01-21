@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using ACEngine.Engine.Rendering;
+using ACEngine.Math;
+using ACEngineDX.Engine;
+using ACEngineDX.Engine.Rendering.Renderer;
 
 namespace ACEngine.Engine
 {
@@ -8,14 +12,12 @@ namespace ACEngine.Engine
     {
         public List<Base> components=new List<Base>();
         public Transform transform;
-        public MeshRenderer meshRenderer;
+        public Renderer renderer;
         public Camera camera;
         public GameObject()
         {
             transform=new Transform();
-            meshRenderer = new MeshRenderer {gameObject = this};
             components.Add(transform);
-            components.Add(meshRenderer);
         }
 
         public object AddComponent(Behavior com)
@@ -27,10 +29,15 @@ namespace ACEngine.Engine
 
         public static GameObject Create(Mesh mesh)
         {
-            var g = new GameObject {meshRenderer = {mesh = mesh}};
+            var g = new GameObject();
+            g.renderer=new MeshRenderer(mesh,g);
             return g;
         }
 
-
+        public static GameObject CreateLine(Vector3 f, Vector3 t, Color c)
+        {
+            var g = new GameObject {renderer = new LineRenderer(f,t,c)};
+            return g;
+        }
     }
 }

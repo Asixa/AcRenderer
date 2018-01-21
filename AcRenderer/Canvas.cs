@@ -57,10 +57,6 @@ namespace ACEngine
             graphics.DrawString("[Space] Change Mode", f, b, 0, 0);
             graphics.DrawString("CurrentMode:"+draw_mode, f, b2, 0, 15);
             graphics.DrawString("FPS:" + (int)(1000/Time.deltatime), f, b2, 0, 32);
-
-            Transform t=new Transform();
-            t.position=new Vector3();
-            t.rotation.z = 90;
         }
 
         private bool BackFaceCulling(Vector3 p1, Vector3 p2, Vector3 p3)

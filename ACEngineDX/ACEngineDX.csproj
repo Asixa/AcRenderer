@@ -11,6 +11,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -21,6 +22,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,6 +33,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>WindowsPlayer.ico</ApplicationIcon>
@@ -69,8 +74,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CameraMove.cs" />
-    <Compile Include="Assets\DebugRotation.cs" />
     <Compile Include="Assets\MouseMove.cs" />
     <Compile Include="Assets\ObjControl.cs" />
     <Compile Include="Assets\Rotate.cs" />
@@ -86,12 +89,15 @@
     <Compile Include="Engine\Component.cs" />
     <Compile Include="Engine\GameObject.cs" />
     <Compile Include="Engine\Input.cs" />
-    <Compile Include="Engine\MeshRenderer.cs" />
+    <Compile Include="Engine\Rendering\Renderer\LineRenderer.cs" />
+    <Compile Include="Engine\Rendering\Renderer\MeshRenderer.cs" />
     <Compile Include="Engine\Rendering\Camera.cs" />
     <Compile Include="Engine\Rendering\Color32.cs" />
     <Compile Include="Engine\Rendering\Material.cs" />
     <Compile Include="Engine\Rendering\Mesh.cs" />
     <Compile Include="Engine\Rendering\Model.cs" />
+    <Compile Include="Engine\Rendering\Pointmap.cs" />
+    <Compile Include="Engine\Rendering\Renderer\Renderer.cs" />
     <Compile Include="Engine\Rendering\Vertex.cs" />
     <Compile Include="Engine\Scene\Scene.cs" />
     <Compile Include="Engine\Scene\SceneManager.cs" />
@@ -113,6 +119,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

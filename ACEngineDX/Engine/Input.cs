@@ -17,6 +17,7 @@ namespace ACEngine.Engine
         private static List<Key> HoldingKey=new List<Key>();
         private static List<int> HoldingMouse = new List<int>();
         public  static Vector2 MouseAsix;
+        public static int MouseWheel;
 
         public static void Init()
         {
@@ -37,8 +38,11 @@ namespace ACEngine.Engine
 
                 mouse.Poll();
                 Mousedata= mouse.GetBufferedData();
-                GetMouseAsix();
-                foreach (var t in Mousedata)CheckHoldingKey(t);
+                CaculateMouseAsix();
+            foreach (var t in Mousedata)
+            {
+                CheckHoldingKey(t);
+            }
         }
 
         public static void CheckHoldingKey(KeyboardUpdate key)
@@ -66,9 +70,10 @@ namespace ACEngine.Engine
             return HoldingKey.Contains(k);
         }
 
-        private static void GetMouseAsix()
+        private static void CaculateMouseAsix()
         {
             MouseAsix = new Vector2(0,0);
+            MouseWheel = 0;
             foreach (var t in Mousedata)
             {
                 switch (t.Offset)
@@ -80,6 +85,7 @@ namespace ACEngine.Engine
                         MouseAsix.y += t.Value;
                         break;
                     case MouseOffset.Z:
+                        MouseWheel += t.Value / 120;
                         break;
                     case MouseOffset.Buttons0:
                         break;
@@ -103,15 +109,12 @@ namespace ACEngine.Engine
             }
         }
 
-        public static bool GetMouseDown(int id)
-        {
-            return Mousedata.Where(t => t.Offset == (MouseOffset)(id+12)).Any(t => t.Value == 128);
-        }
-        public static bool GetMouseUp(int id)
-        {
-            return Mousedata.Where(t => t.Offset == (MouseOffset)(id + 12)).Any(t => t.Value == 0);
-        }
+        public static Vector2 GetMouseAsix() => MouseAsix;
+        public static int GetMouseWhell() => MouseWheel;
 
+
+        public static bool GetMouseDown(int id)=>Mousedata.Where(t => t.Offset == (MouseOffset)(id+12)).Any(t => t.Value == 128);
+        public static bool GetMouseUp(int id)=>Mousedata.Where(t => t.Offset == (MouseOffset)(id + 12)).Any(t => t.Value == 0);
         public static bool GetMouse(int id)=>HoldingMouse.Contains(id);
     }
 }

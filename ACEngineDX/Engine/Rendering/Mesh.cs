@@ -8,7 +8,6 @@ namespace ACEngine.Engine.Rendering
     public class Mesh
     {
         public Vertex[] vertices;
-
         public Mesh(Model model)
         {
             vertices = new Vertex[model.indexs.Count];
@@ -24,14 +23,14 @@ namespace ACEngine.Engine.Rendering
             vertices = new Vertex[model.TriangleArray.Length];
             for (var i = 0; i < model.TriangleArray.Length; i++)
             {
+                var color = Random.Range(0, 255) / 255f;
                 var index = model.TriangleArray[i];
                 var point = model.VertexArray[index];
                 vertices[i] = new Vertex(Vector3.FromObj(point),
                     Vector3.FromObj(model.NormalArray[index]),
                     model.UVArray[index].x,
-                    model.UVArray[index].y, new Vector3(Random.Range(0,255)/255f, Random.Range(0, 255) / 255f, Random.Range(0, 255) / 255f));
+                    model.UVArray[index].y, new Vector3(color, color, color));
             }
         }
-
     }
 }
