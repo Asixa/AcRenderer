@@ -108,10 +108,10 @@ namespace ACEngine
       
         public void BakeLight(ref Vertex v)
         {
-            Vector3 worldPoint = v.point;//世界空间顶点位置
-            Vector3 normal= v.normal;   //模型空间法线乘以世界矩阵的逆转置得到世界空间法线
-            Color32 emissiveColor =currentMaterial.emissive;//自发光
-            Color32 ambientColor = new Color32(0.2f,0.2f,0.3f);//环境光 
+            Vector3 worldPoint = v.point;
+            Vector3 normal= v.normal;  
+            Color32 emissiveColor =currentMaterial.emissive;
+            Color32 ambientColor = new Color32(0.2f,0.2f,0.3f);
 
             Vector3 inLightDir = (lightpos- worldPoint);
             float diffuse = Vector3.Dot(normal, inLightDir);
@@ -119,14 +119,14 @@ namespace ACEngine
             {
                 diffuse = 0;
             }
-            Color32 diffuseColor = currentMaterial.diffuse * diffuse * _light.lightColor;//漫反射
+            Color32 diffuseColor = currentMaterial.diffuse * diffuse * _light.lightColor;
             //
             Vector3 inViewDir = (SceneManager.Current.main_camera.transform.position - worldPoint);
             Vector3 h = ( inLightDir);
             float specular = 0;
             if (diffuse != 0)
 
-            {//防止出现光源在物体背面产生高光的情况
+            {
                 specular = (float)System.Math.Pow(Mathx.Range(Vector3 .Dot(h, normal), 0, 1), currentMaterial.shininess);
             }
             Color32 specularColor =currentMaterial.specular * specular * _light.lightColor;//镜面高光
