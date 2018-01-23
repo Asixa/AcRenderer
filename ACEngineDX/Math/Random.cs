@@ -1,5 +1,5 @@
 ﻿using System;
-namespace ACEngineDX.Math
+namespace ACEngine.Math
 {
     class Random
     {

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using AcForm;
 using ACEngine.Engine;
 using SharpDX.DirectInput;
 
-namespace ACEngineDX.Assets
+namespace ACEngine.Assets
 {
     class ObjControl:Behavior
     {
@@ -16,8 +16,8 @@ namespace ACEngineDX.Assets
 
             if (Input.GetMouse(0))
             {
-                transform.rotation.x += Input.MouseAsix.y * 1f;
-                transform.rotation.y -= Input.MouseAsix.x * 1f;
+                transform.rotation.x += Input.mouse_axis.y * 1f;
+                transform.rotation.y -= Input.mouse_axis.x * 1f;
             }
         }
     }

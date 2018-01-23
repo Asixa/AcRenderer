@@ -1,4 +1,6 @@
-﻿using ACEngine.Math;
+﻿using AcForm;
+using ACEngine.Math;
+
 namespace ACEngine.Engine.Rendering
 {
     public class Color32
@@ -60,6 +62,7 @@ namespace ACEngine.Engine.Rendering
             var b = this.b * 255;
             return System.Drawing.Color.FromArgb((int)r, (int)g, (int)b);
         }
+        public DxColor ToDX()=> new DxColor(r,g,b);
 
         public static Color32 operator *(Color32 a, Color32 b) => new Color32(a.r * b.r, a.g * b.g, a.b * b.b);
         public static Color32 operator *(float a, Color32 b) => new Color32(a * b.r, a * b.g, a * b.b);

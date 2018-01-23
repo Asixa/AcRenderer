@@ -1,7 +1,7 @@
 ﻿using System;
 using ACEngine.Math;
 using ObjModelLoader;
-using Random = ACEngineDX.Math.Random;
+using Random = ACEngine.Math.Random;
 
 namespace ACEngine.Engine.Rendering
 {
@@ -23,7 +23,7 @@ namespace ACEngine.Engine.Rendering
             vertices = new Vertex[model.TriangleArray.Length];
             for (var i = 0; i < model.TriangleArray.Length; i++)
             {
-                var color = Random.Range(0, 255) / 255f;
+                var color = Math.Random.Range(0, 255) / 255f;
                 var index = model.TriangleArray[i];
                 var point = model.VertexArray[index];
                 vertices[i] = new Vertex(Vector3.FromObj(point),

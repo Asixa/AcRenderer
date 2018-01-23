@@ -16,6 +16,7 @@ namespace ACEngine.Math
             this.z = z;
         }
 
+
         public Vector3()
         {
         }

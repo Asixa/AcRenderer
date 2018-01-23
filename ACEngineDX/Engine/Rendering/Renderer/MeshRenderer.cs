@@ -1,20 +1,14 @@
-﻿using System;
-using System.Drawing;
-using ACEngine;
-using ACEngine.Engine;
-using ACEngine.Engine.Rendering;
+﻿using System.Drawing;
 using ACEngine.Engine.Scene;
-using ACEngine.Math;
-using ACEngineDX.Engine.Rendering.Renderer;
 
-namespace ACEngineDX.Engine
+namespace ACEngine.Engine.Rendering.Renderer
 {
     public class MeshRenderer :Renderer
     {
         public GameObject gameObject;
         public Transform transform => gameObject.transform;
         public Mesh mesh;
-        public Material material;
+        public Material material=new Material();
 
         public MeshRenderer(Mesh m,GameObject g)
         {
@@ -25,13 +19,14 @@ namespace ACEngineDX.Engine
         public override void Render()
         {
             var canvas = Program.main.canvas;
+            canvas.currentMaterial = material;
             CaculateCameraTransform();
             if ( transform.positionToCamera.z <= 0) return;
             var c = 1;
             for (var i = 0; i + 2 < mesh.vertices.Length; i += 3)
             {
                 c++;
-                if (c > 8) c = 2;
+                if (c > 9) c = 2;
                 canvas.currentColor = Color.FromArgb(100 + ((int)(c / 2)) * 20, 100 + ((int)(c / 2)) * 20,
                     100 + ((int)(c / 2)) * 20);
                 canvas.DrawTriangle(this, i);
@@ -51,9 +46,6 @@ namespace ACEngineDX.Engine
             transform.positionToCamera = GetRelativePosition(transform.position - camera.position, camera.position, camera.rotation, true);
             transform.RotationToCamera = transform.rotation +camera.rotation;
         }
-
-    
-
     }
 
     public struct Triangle

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using ACEngine.Engine.Rendering;
+using ACEngine.Engine.Rendering.Renderer;
 using ACEngine.Math;
-using ACEngineDX.Engine;
-using ACEngineDX.Engine.Rendering.Renderer;
+using ACEngine.Engine;
 
 namespace ACEngine.Engine
 {

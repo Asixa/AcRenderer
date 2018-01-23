@@ -1,5 +1,4 @@
-﻿
-using ACEngine.Math;
+﻿using ACEngine.Math;
 using ACEngine.Mathf;
 
 namespace ACEngine.Engine.Rendering

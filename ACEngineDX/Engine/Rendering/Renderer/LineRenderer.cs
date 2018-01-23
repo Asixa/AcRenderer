@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ACEngine.Math;
 
-namespace ACEngineDX.Engine.Rendering.Renderer
+namespace ACEngine.Engine.Rendering.Renderer
 {
     class LineRenderer:Renderer
     {
