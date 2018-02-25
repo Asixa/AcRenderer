@@ -50,6 +50,7 @@ namespace ACEngine
             DrawLine(xs,  y, xe, y, Mathx.ToDxColor(c));
         }
 
+
         public void DrawLine(Vertex f, Vertex t)
         {
             DrawLine((int)f.point.x, (int)f.point.y, (int)t.point.x, (int)t.point.y, Mathx.ToDxColor(Color.Black), 3);

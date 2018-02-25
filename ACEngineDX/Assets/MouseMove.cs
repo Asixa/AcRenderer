@@ -19,7 +19,7 @@ namespace ACEngine.Assets
             }
             float speed = 0.5f;
             if (Input.GetKey(Key.LeftShift)) speed = 1;
-            SceneManager.Current.main_camera.transform.position.z -= speed*Input.GetMouseWhell();
+           SceneManager.Current.main_camera.transform.position.z += speed*Input.GetMouseWhell();
         }
     }
 }

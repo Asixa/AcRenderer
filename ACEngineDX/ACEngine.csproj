@@ -44,7 +44,7 @@
   <ItemGroup>
     <Reference Include="AcForm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\AcForm\AcForm\bin\Release\AcForm_Secure\AcForm.dll</HintPath>
+      <HintPath>..\packages\AcForm.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -79,7 +79,6 @@
     <Compile Include="Engine\Rendering\Pointmap.cs" />
     <Compile Include="Engine\Rendering\Renderer\Renderer.cs" />
     <Compile Include="Engine\Rendering\Vertex.cs" />
-    <Compile Include="Engine\Runtime\CSharpCompiler.cs" />
     <Compile Include="Engine\Scene\Scene.cs" />
     <Compile Include="Engine\Scene\SceneManager.cs" />
     <Compile Include="Engine\Time.cs" />
@@ -111,6 +110,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="sphere.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

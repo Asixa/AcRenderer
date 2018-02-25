@@ -33,6 +33,7 @@ namespace ACEngine
 
         public void Draw()
         {
+            
             foreach (var t in SceneManager.Current.ObjectInScene)
             {
                 t.renderer?.Render();
@@ -108,6 +109,7 @@ namespace ACEngine
       
         public void BakeLight(ref Vertex v)
         {
+            _light.intensity = 5;
             Vector3 worldPoint = v.point;
             Vector3 normal= v.normal;  
             Color32 emissiveColor =currentMaterial.emissive;
@@ -119,7 +121,7 @@ namespace ACEngine
             {
                 diffuse = 0;
             }
-            Color32 diffuseColor = currentMaterial.diffuse * diffuse * _light.lightColor;
+            Color32 diffuseColor = currentMaterial.diffuse * diffuse * _light.lightColor*_light.intensity;
             //
             Vector3 inViewDir = (SceneManager.Current.main_camera.transform.position - worldPoint);
             Vector3 h = ( inLightDir);

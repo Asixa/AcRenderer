@@ -8,6 +8,7 @@ namespace ACEngine.Engine.Rendering
 {
     public class Light
     {
+        public float intensity = 1f;
         public Color32 lightColor=new Color32(1,1,1);
     }
 }

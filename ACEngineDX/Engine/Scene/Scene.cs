@@ -37,12 +37,13 @@ namespace ACEngine.Engine.Scene
         {
             main_camera = Camera.CreateNew();
             ObjectInScene.Add(main_camera);
-            main_camera.transform.position=new Vector3(0,0,0);
+            main_camera.transform.position=new Vector3(0,0,-5);
 
-           // Behavior.Spawn(GameObject.Create(new Mesh(Model.Plane)), new Vector3(0, 0, 5), new Vector3(0, 0, 0)).AddComponent(new MouseMove());
+            // Behavior.Spawn(GameObject.Create(new Mesh(Model.Plane)), new Vector3(0, 0, 5), new Vector3(0, 0, 0)).AddComponent(new MouseMove());
 
-            Behavior.Spawn(GameObject.Create(new Mesh(Model.Cube)), new Vector3(0, 0, 5), new Vector3(0, 0, 0)).AddComponent(new MouseMove());
-         
+            //Behavior.Spawn(GameObject.Create(new Mesh(ObjModelLoader.ObjLoader.load("sphere.obj"))), new Vector3(0, 0, 2), new Vector3(0, 0, 0)).AddComponent(new MouseMove());
+             Behavior.Spawn(GameObject.Create(new Mesh(Model.Cube)), new Vector3(0, 0, 5), new Vector3(0, 0, 0)).AddComponent(new MouseMove());
+
             OnStart();
         }
     }

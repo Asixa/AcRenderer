@@ -5,40 +5,26 @@ namespace ACEngine.Engine.Rendering
 {
     public class Color32
     {
-        private float _r;
-        private float _b;
-        private float _g;
 
-        public float r
-        {
-            get => Mathx.Range(_r, 0, 1);
-            set => _r = Mathx.Range(value, 0, 1);
-        }
 
-        public float g
-        {
-            get => Mathx.Range(_g, 0, 1);
-            set => _g = value;
-        }
+        public float r;
 
-        public float b
-        {
-            get => Mathx.Range(_b, 0, 1);
-            set => _b = value;
-        }
+        public float g;
+
+        public float b;
 
         public Color32(float r, float g, float b)
         {
-            this._r = Mathx.Range(r, 0, 1);
-            this._g = Mathx.Range(g, 0, 1);
-            this._b = Mathx.Range(b, 0, 1);
+            this.r = Mathx.Range(r, 0, 1);
+            this.g = Mathx.Range(g, 0, 1);
+            this.b = Mathx.Range(b, 0, 1);
         }
 
         public Color32(System.Drawing.Color c)
         {
-            this._r = Mathx.Range((float)c.R / 255, 0, 1);
-            this._g = Mathx.Range((float)c.G / 255, 0, 1);
-            this._b = Mathx.Range((float)c.B / 255, 0, 1);
+            this.r = Mathx.Range((float)c.R / 255, 0, 1);
+            this.g = Mathx.Range((float)c.G / 255, 0, 1);
+            this.b = Mathx.Range((float)c.B / 255, 0, 1);
         }
 
         public Color32()
