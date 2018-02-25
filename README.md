@@ -1,7 +1,7 @@
 # AcRenderer
 ## This is toy soft renderer which can render basic texture and light.
 
-##screenshot
+## screenshot
 
 ![Screenshot](https://github.com/Asixa/AcRenderer/blob/master/Github/screenshot1.png?raw=true "Screenshot")
 ![Screenshot](https://github.com/Asixa/AcRenderer/blob/master/Github/screenshot2.png?raw=true "Screenshot")
